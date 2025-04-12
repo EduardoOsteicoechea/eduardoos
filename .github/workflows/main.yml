@@ -31,14 +31,14 @@ jobs:
             sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
             cd eduardoos
             if [ -d api ]; then
-              cd api
+               cd api
                sudo dotnet restore
-               sudo dotnet build -c Release
+               sudo dotnet publish -c Release
                if [ $? -ne 0 ]; then
                   echo "dotnet publish failed"
                   exit 1
                fi
-               cd api/bin/Release/net8.0
+               cd bin/Release/net8.0/publish
                nohup sudo dotnet api.dll &
             fi
             sudo nginx -s reload            
