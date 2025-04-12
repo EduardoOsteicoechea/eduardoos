@@ -43,6 +43,7 @@ jobs:
               nohup sudo dotnet eduardoosapi.dll &
             fi
             sudo nginx -s reload
+            
 
       - name: Check API status
         uses: appleboy/ssh-action@master
