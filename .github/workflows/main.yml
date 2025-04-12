@@ -32,12 +32,11 @@ jobs:
             cd eduardoos
             if [ -d api ]; then
               cd api
-              sudo dotnet restore
-              sudo dotnet build -c Release
-              #sudo dotnet publish -c Release
-              cd /var/www/html/eduardoos/api/bin/Release/net8.0
-              sudo kill -9 $(pgrep -f "eduardoosapi.dll") || true #ignore if no process found.
-              nohup sudo dotnet api.dll &
+               sudo dotnet restore
+               sudo dotnet build -c Release
+               sudo screen -S eduardoosapi
+               cd api/bin/Release/net8.0
+               sudo dotnet run
             fi
             sudo nginx -s reload            
             sudo systemctl restart nginx
