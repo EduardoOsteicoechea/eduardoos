@@ -1,0 +1,7 @@
+C:\eduardoos\api\bin\Release\net8.0\publish\api.exe
+C:\eduardoos\api\bin\Release\net8.0\publish\appsettings.Development.json
+C:\eduardoos\api\bin\Release\net8.0\publish\appsettings.json
+C:\eduardoos\api\bin\Release\net8.0\publish\api.dll
+C:\eduardoos\api\bin\Release\net8.0\publish\api.deps.json
+C:\eduardoos\api\bin\Release\net8.0\publish\api.runtimeconfig.json
+C:\eduardoos\api\bin\Release\net8.0\publish\api.pdb

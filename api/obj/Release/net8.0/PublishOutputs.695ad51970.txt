@@ -1,0 +1,7 @@
+C:\var\www\html\eduardoos\api\publish\api.exe
+C:\var\www\html\eduardoos\api\publish\appsettings.Development.json
+C:\var\www\html\eduardoos\api\publish\appsettings.json
+C:\var\www\html\eduardoos\api\publish\api.dll
+C:\var\www\html\eduardoos\api\publish\api.deps.json
+C:\var\www\html\eduardoos\api\publish\api.runtimeconfig.json
+C:\var\www\html\eduardoos\api\publish\api.pdb
