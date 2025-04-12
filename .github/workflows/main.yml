@@ -33,12 +33,12 @@ jobs:
             if [ -d api ]; then
               cd api
                sudo dotnet restore
-               sudo dotnet publish -c Release
+               sudo dotnet build -c Release
                if [ $? -ne 0 ]; then
                   echo "dotnet publish failed"
                   exit 1
                fi
-               cd api/bin/Release/net8.0/publish
+               cd api/bin/Release/net8.0
                nohup sudo dotnet api.dll &
             fi
             sudo nginx -s reload            
