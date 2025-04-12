@@ -20,32 +20,24 @@ jobs:
 
       - name: Connect to EC2 instance
         uses: appleboy/ssh-action@master
-        with: 
-          host: ${{ secrets.HOST_DNS }} 
+        with:
+          host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo rm -rf /var/cache/nginx/* 
+            sudo rm -rf /var/cache/nginx/*
             sudo rm -r /var/www/html/eduardoos
             cd /var/www/html/
             sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
-            cd eduardoos
-            if [ -d api ]; then
-               cd api
-               sudo dotnet restore
-               sudo dotnet publish -c Release
-               if [ $? -ne 0 ]; then
-                  echo "dotnet publish failed"
-                  exit 1
-               fi
-               cd bin/Release/net8.0/publish
-               # this never has worked --- sudo kill -9 $(pgrep -f "api.dll") || true #ignore if no process found.
-               nohup sudo dotnet api.dll &
-            fi
-            sudo nginx -s reload            
+            sudo kill -9 $(pgrep -f "eduardoosapi$") # kill old process
+            cd eduardoos/api
+            sudo dotnet restore
+            sudo dotnet publish -c Release
+            cd bin/Release/net8.0/publish
+            sudo screen -dmS eduardoosapi dotnet eduardoosapi.dll # Run API in detached screen session
             sudo systemctl restart nginx
             sudo systemctl reload nginx
-            
+
       - name: Wait for deployment
         run: |
           sleep 10
