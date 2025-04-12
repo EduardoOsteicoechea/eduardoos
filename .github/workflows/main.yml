@@ -34,9 +34,9 @@ jobs:
             sudo dotnet restore
             sudo dotnet publish -c Release
             cd bin/Release/net8.0/publish
-            sudo screen -dmS eduardoosapi dotnet eduardoosapi.dll # Run API in detached screen session
+            sudo screen -S eduardoosapi dotnet eduardoosapi.dll #removed -dmS #Run API in detached screen session
             sudo systemctl restart nginx
-            sudo systemctl reload nginx
+            sudo systemctl reload nginx 
 
       - name: Wait for deployment
         run: |
