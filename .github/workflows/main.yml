@@ -17,7 +17,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-
+ 
       - name: Connect to EC2 instance
         uses: appleboy/ssh-action@master
         with:
@@ -34,7 +34,8 @@ jobs:
             sudo dotnet restore
             sudo dotnet publish -c Release
             cd bin/Release/net8.0/publish 
-            sudo screen -S eduardoosapi dotnet api.dll --urls "http://*:8080" # Run API on port 8080
+            sudo screen -S api 
+            sudo dotnet api.dll --urls "https://*:8080"
             sudo systemctl restart nginx
             sudo systemctl reload nginx 
 
