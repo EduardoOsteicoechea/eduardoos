@@ -11,4 +11,4 @@ Go to "Settings" tab
                   AWS_REGION
                   HOST_DNS
                   USERNAME
-                  SSH_PRIVATE_KEY 
+                  SSH_PRIVATE_KEY
