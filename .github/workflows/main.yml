@@ -39,7 +39,7 @@ jobs:
                   exit 1
                fi
                cd bin/Release/net8.0/publish
-               sudo kill -9 $(pgrep -f "api.dll") || true #ignore if no process found.
+               # this never has worked --- sudo kill -9 $(pgrep -f "api.dll") || true #ignore if no process found.
                nohup sudo dotnet api.dll &
             fi
             sudo nginx -s reload            
