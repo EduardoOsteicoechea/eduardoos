@@ -1,5 +1,7 @@
 On github repository
 
+REMEMBER TO LEAVE THE REPOSITORY AS PUBLIC
+
 Go to "Settings" tab
    Under "Security"
       "Secrets and Variables"
