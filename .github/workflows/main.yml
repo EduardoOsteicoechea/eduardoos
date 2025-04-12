@@ -29,7 +29,6 @@ jobs:
             sudo rm -r /var/www/html/eduardoos
             cd /var/www/html/
             sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
-            sudo kill -9 $(pgrep -f "api$") # kill old process
             cd eduardoos/api
             sudo dotnet restore
             sudo dotnet publish -c Release
