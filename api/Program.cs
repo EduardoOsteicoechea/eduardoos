@@ -4,4 +4,4 @@ var app = builder.Build();
 
 app.MapGet("/api", () => "Hello World!");
 
-app.Run();
+app.Run(); 
