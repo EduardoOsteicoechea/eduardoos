@@ -42,7 +42,7 @@ jobs:
               sudo kill -9 $(pgrep -f "eduardoosapi.dll") || true #ignore if no process found.
               nohup sudo dotnet eduardoosapi.dll &
             fi
-            sudo nginx -s reload 
+            sudo nginx -s reload
 
       - name: Check API status
         uses: appleboy/ssh-action@master
