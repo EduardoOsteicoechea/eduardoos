@@ -1,0 +1,14 @@
+On github repository
+
+Go to "Settings" tab
+   Under "Security"
+      "Secrets and Variables"
+         "Actions"
+            click "New repository secret"
+               set secrets for:
+                  AWS_ACCESS_KEY_ID
+                  AWS_SECRET_ACCESS_KEY
+                  AWS_REGION
+                  HOST_DNS
+                  USERNAME
+                  SSH_PRIVATE_KEY
