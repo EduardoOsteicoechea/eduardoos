@@ -34,7 +34,7 @@ jobs:
             sudo dotnet restore
             sudo dotnet publish -c Release
             cd bin/Release/net8.0/publish 
-            sudo screen -S eduardoosapi dotnet eduardoosapi.dll #removed -dmS #Run API in detached screen session
+            sudo screen -S eduardoosapi dotnet eduardoosapi.dll --urls "http://*:8080" # Run API on port 8080
             sudo systemctl restart nginx
             sudo systemctl reload nginx 
 
