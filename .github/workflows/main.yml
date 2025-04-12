@@ -25,14 +25,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            sudo rm -rf /var/cache/nginx/* 
+            sudo rm -r /var/www/html/eduardoos
             cd /var/www/html/
-            if [ -d eduardoos ]; then
-              cd eduardoos
-              sudo git pull 
-            else
-              sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
-              cd eduardoos
-            fi
+            sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
+            cd eduardoos
             if [ -d api ]; then
               cd api
               sudo dotnet restore
@@ -42,7 +39,9 @@ jobs:
               sudo kill -9 $(pgrep -f "eduardoosapi.dll") || true #ignore if no process found.
               nohup sudo dotnet eduardoosapi.dll &
             fi
-            sudo nginx -s reload
+            sudo nginx -s reload            
+            sudo systemctl restart nginx
+            sudo systemctl reload nginx
             
       - name: Wait for deployment
         run: |
