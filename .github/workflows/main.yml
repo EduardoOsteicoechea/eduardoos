@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy to ec2
 
 on:
   push:
@@ -18,14 +18,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Connect to EC2 instance and deploy
+      - name: Connect to EC2 instance
         uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST_DNS }}
+        with: 
+          host: ${{ secrets.HOST_DNS }} 
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            set -eux # Exit on error, print commands
             cd /var/www/html/
             if [ -d eduardoos ]; then
               cd eduardoos
@@ -34,17 +33,22 @@ jobs:
               sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
               cd eduardoos
             fi
-            cd api
-            sudo dotnet restore
-            sudo dotnet build -c Release
-            sudo dotnet publish -c Release -o /var/www/html/eduardoos/api/publish
-            cd publish
-            sudo kill -9 $(pgrep -f "eduardoosapi$")
-            sudo screen -S eduardoosapi            
-            sudo dotnet run
+            if [ -d api ]; then
+              cd api
+              sudo dotnet restore
+              sudo dotnet build -c Release
+              sudo dotnet publish -c Release -o /var/www/html/eduardoos/api/publish
+              cd /var/www/html/eduardoos/api/publish
+              sudo kill -9 $(pgrep -f "eduardoosapi.dll") || true #ignore if no process found.
+              nohup sudo dotnet eduardoosapi.dll &
+            fi
             sudo nginx -s reload
-            sudo nginx -s reload
-            
-      - name: Wait for deployment
-        run: |
-          sleep 5
+
+      - name: Check API status
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            curl -f http://<your_api_endpoint>/health # Replace with your API's health check endpoint
