@@ -28,7 +28,7 @@ jobs:
             cd /var/www/html/
             if [ -d eduardoos ]; then
               cd eduardoos
-              sudo git pull
+              sudo git pull 
             else
               sudo git clone https://github.com/EduardoOsteicoechea/eduardoos.git
               cd eduardoos
