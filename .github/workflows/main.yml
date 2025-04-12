@@ -33,9 +33,10 @@ jobs:
             if [ -d api ]; then
               cd api
                sudo dotnet restore
-               sudo dotnet build -c Release
-               cd api/bin/Release/net8.0
-               nohup sudo dotnet run &
+               sudo dotnet publish -c Release
+               cd api/bin/Release/net8.0/publish
+               nohup sudo ./api &
+               #nohup sudo dotnet run &
             fi
             sudo nginx -s reload            
             sudo systemctl restart nginx
