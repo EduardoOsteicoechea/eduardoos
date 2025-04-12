@@ -42,8 +42,15 @@ jobs:
               sudo kill -9 $(pgrep -f "eduardoosapi.dll") || true #ignore if no process found.
               nohup sudo dotnet eduardoosapi.dll &
             fi
+            sudo nginx -s restart
             sudo nginx -s reload
             
-      - name: Wait for deployment
-        run: |
-          sleep 10
+
+      - name: Check API status
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            curl -f http://<your_api_endpoint>/health # Replace with your API's health check endpoint
