@@ -108,6 +108,7 @@
 
 :root
 {
+   font-size: 15px;
    font-synthesis: none;
    text-rendering: optimizeLegibility;
    -webkit-font-smoothing: antialiased;
@@ -133,9 +134,20 @@
    --main_content_aside_width: 33rem;
    --right_side_small_control: 2.5rem;
 
+   --itemHeight : 30px;
+
    --common_margin_desktop: 15px;
    --common_margin_mobile: 15px;
    --square_arrow_button_dimension: 25px;
+
+   --c1:#fff;
+   --c2:#000;
+   --c3:#f0f0f0;
+   --c4:#fafafa;
+   --c5:#777;
+   --c6:#aaa;
+   --c7:#ccc;
+   --c8:#444;
 }
 
 *
@@ -161,21 +173,9 @@ body
    overflow-y: auto !important;
    margin: auto;
    background: var(--c1);
-   border: var(--b1);
+   /* border: var(--b1); */
 }
 
-button
-{
-   font-weight: 900;
-   background: var(--c2);
-   color: var(--c1);
-   border: none;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   cursor: pointer;
-   border-radius: .2rem !important;
-}
 
 a,
 b,
@@ -203,8 +203,7 @@ b
 h1
 {
    font-family: f1b;
-   font-size: 2.5rem;
-   line-height: 2.75rem;
+   font-size: 30px;
 }
 
 h2
@@ -226,7 +225,6 @@ h4
    font-family: f1b;
    font-size: 1rem;
 }
-
 @media only screen and (max-width: 950px) and (min-width: 451px)
 {}
 
